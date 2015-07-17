@@ -1,9 +1,6 @@
-#Node Test Template
-This project is a basic starting point for a node project supporting ES6, code linting, and unit tests.  
+#Generator Evaluator Project
+This project is a node application that creates random math equations then solves them.  
 
-- Using ES6 is optional.  Transpiling is setup to use babelify  The build process will support it though.
-- Unit tests are setup for use with Mocha, Chai, Sinon
-- 
 
 ## NPM Script Descriptions
 - ```npm run lint``` will lint your code using jscs and eslint

@@ -8,23 +8,24 @@ Generator._getRandomNumber = function(min = 1, max = 10) {
 
 Generator._getRandomOperator = function() {
     const operators = ['+', '-', '*', '/'];
-    let min = 0, max = operators.length;
+    let min = 0;
+    let max = operators.length;
     let i = this._getRandomNumber(min, max);
     return operators[i];
 };
 
-Generator.createExpression = function(blar) {
+Generator.createExpression = function(numOfNum) {
     let plop = [];
 
     if(plop.length === 0) {
         plop.push(this._getRandomNumber());
-        blar--;
+        numOfNum--;
     }
 
-    while(blar) {
+    while(numOfNum) {
         plop.push(this._getRandomOperator());
         plop.push(this._getRandomNumber());
-        blar--;
+        numOfNum--;
     }
 
     return plop.join('');
