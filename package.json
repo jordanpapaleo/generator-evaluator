@@ -1,0 +1,43 @@
+{
+  "name": "generator-evaluator",
+  "version": "1.0.0",
+  "description": "This is a node app that randomly generated math equations then solves them",
+  "main": "dist/index.js",
+  "scripts": {
+    "postinstall": "npm run build",
+    "build": "browserify src/index.js > dist/index.js",
+    "watch": "watchify src/index.js -o dist/index.js -dv",
+    "dev": "npm test && npm run build && npm run watch",
+    "lint-jscs": "jscs --esnext src/",
+    "lint-eslint": "eslint --ignore-path .gitignore src/",
+    "lint": "npm run lint-eslint -f && npm run lint-jscs -f",
+    "unit-test": "mocha",
+    "test": "npm run lint && npm run unit-test",
+    "package": "npm test && npm run build",
+    "start": "npm run build && node dist/index.js"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jordanpapaleo/generator-evaluator.git"
+  },
+  "author": "Jordan Papaleo",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^2.0.2",
+    "babelify": "^6.0.1",
+    "browserify": "^10.1.3",
+    "chai": "^3.1.0",
+    "eslint": "^0.22.1",
+    "jscs": "^1.7.3",
+    "nodemon": "^1.3.7",
+    "sinon": "^1.15.4",
+    "uglify-js": "^2.4.15",
+    "uglifyify": "^3.0.1",
+    "watchify": "^3.1.0"
+  }
+}
