@@ -1,13 +1,23 @@
 'use strict';
 
+/**
+ * Evaluator Module
+ * @module Evaluator
+ */
 var Evaluator = {};
 
+/**
+ *
+ */
 Evaluator.solve = function(equation) {
-    var processedValues = this._processEquation(equation);
+    var processedValues = this._processEquationString(equation);
     return this._solveEquation(processedValues);
 };
 
-Evaluator._processEquation = function(equation) {
+/**
+ *
+ */
+Evaluator._processEquationString = function(equation) {
     var processedValues = [];
     var components = equation.split('');
     var tempVal = '';
@@ -16,7 +26,7 @@ Evaluator._processEquation = function(equation) {
         var component = components[i];
 
         if(!isNaN(component)) {
-            tempVal += `${component}`;
+            tempVal += component + '';
         } else {
             processedValues.push(tempVal);
             processedValues.push(component);
@@ -32,6 +42,9 @@ Evaluator._processEquation = function(equation) {
     return processedValues;
 };
 
+/**
+ *
+ */
 Evaluator._solveEquation = function(processedValues) {
     var value = null;
 
@@ -39,7 +52,7 @@ Evaluator._solveEquation = function(processedValues) {
         if(!value) {
             value = processedValues[i];
         } else {
-            value = this._solve(value, processedValues[i], processedValues[i + 1]);
+            value = this._evaluate(value, processedValues[i], processedValues[i + 1]);
             i++; //skip an iteration since we just used it
         }
     }
@@ -47,13 +60,16 @@ Evaluator._solveEquation = function(processedValues) {
     return value;
 };
 
-Evaluator._solve = function(val1, op, val2) {
+/**
+ *
+ */
+Evaluator._evaluate = function(val1, op, val2) {
     var value = 0;
     val1 = parseFloat(val1);
     val2 = parseFloat(val2);
 
     if(isNaN(val1) || isNaN(val2)) {
-        console.error('Error: Cannot divide 0 by anything; returning 0');
+        console.error('Error: Cannot divide cannot divide by 0');
         return 0;
     }
 

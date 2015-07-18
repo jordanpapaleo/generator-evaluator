@@ -1,14 +1,27 @@
-'use strict';
+#! /usr/bin/env node
 
-var http       = require('http');
+var http    = require('http');
+var nodemon = require('nodemon');
+var args    = require('minimist')(process.argv.slice(2), {
+    number: 'i'
+});
 
-var i = 1000;
-while(i) {
-    generateEquation();
-    i--;
-}
 
-function generateEquation() {
+nodemon({
+    script: './src/api.js'
+});
+
+nodemon.on('start', function() {
+    setTimeout(function() {
+        var i = (args.i) ? args.i : 10;
+        while(i) {
+            generateEquation(i);
+            i--;
+        }
+    }, 250);
+});
+
+function generateEquation(i) {
     var options = {
         hostname: '127.0.0.1',
         port: 1337,
@@ -19,9 +32,7 @@ function generateEquation() {
     var req = http.request(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            console.log('');
-            console.log('Equation:', JSON.parse(chunk).expression);
-            evaluateEquation(chunk);
+            evaluateEquation(i, chunk);
         });
     });
 
@@ -32,17 +43,7 @@ function generateEquation() {
     req.end();
 }
 
-function evaluateEquation(data) {
-    /*
-     POST /v1/evaluator HTTP/1.1
-     Content-Type: application/x-www-form-urlencoded
-     Host: 127.0.0.1:1337
-     Connection: close
-     User-Agent: Paw/2.2.2 (Macintosh; OS X/10.10.4) GCDHTTPRequest
-     Content-Length: 49
-
-     7-2*5-5*4*7/1*3-7/4*5-5*4*2/8*2/6*6/6/4-5*1-8*1*5
-     */
+function evaluateEquation(i, data) {
     data = JSON.parse(data);
 
     if(!data.hasOwnProperty('expression')) {
@@ -63,7 +64,10 @@ function evaluateEquation(data) {
     var req = http.request(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            console.log('Evaluated',chunk);
+            console.log('');
+            console.log('Solving equation ' + i);
+            console.log('Equation:', data.expression);
+            console.log('Value:',chunk);
         });
     });
 

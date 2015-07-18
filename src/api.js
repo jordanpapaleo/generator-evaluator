@@ -1,9 +1,8 @@
-var Generator  = require('./src/Generator');
-var Evaluator  = require('./src/Evaluator');
+var Generator  = require('./Generator');
+var Evaluator  = require('./Evaluator');
 
 var http       = require('http');
 var connect    = require('connect');
-var request    = require('request');
 var bodyParser = require('body-parser');
 var send       = require('connect-send-json');
 
@@ -25,13 +24,13 @@ app.use('/v1/evaluator/', function(req, res) {
             }
             break;
         case 'GET':
-            response = "GET";
+            response = 'GET';
             break;
         case 'PUT':
-            response = "PUT";
+            response = 'PUT';
             break;
         default:
-            response = "DEFAULT";
+            response = 'DEFAULT';
     }
 
     res.end(response);
@@ -55,10 +54,8 @@ app.use('/v1/generator/', function(req, res) {
 });
 
 // respond to all requests
-app.use('/', function(req, res){
-    res.end('Generator Evaluator Service\n');
+app.use('/', function(req, res) {
+    res.end('Generator Evaluator API');
 });
 
-var api = http.createServer(app).listen(port);
-
-
+http.createServer(app).listen(port);

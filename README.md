@@ -14,6 +14,7 @@ This project is a node application that creates random math equations then solve
 1. Clone the git repository to your local computer ```git clone https://github.com/jordanpapaleo/generator-evaluator.git```
 1. Navigate into the root of the project ```cd generator-evaluator``
 1. Install the dependencies and build the project ```npm install```
+1. Run from you terminal ```./index.js --i=100```
 
 
 ## NPM Script Descriptions
@@ -22,3 +23,6 @@ This project is a node application that creates random math equations then solve
 - ```npm test``` will lint your code then run unit tests
 - ```npm start```  will build your project into the dist directory and then run it
 - ```npm run dev``` will run test, build the project, and run the code watcher and nodemon
+
+
+NEED TO HAVE MOCHA INSTALLED GLOBALLY TO RUN TESTS FROM TERMINAL

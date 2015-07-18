@@ -1,19 +1,24 @@
 'use strict';
 
+/**
+ * Generator Module
+ * @module Generator
+ */
 var Generator = {};
 
+/**
+ * Private function to create random numbers
+ * @param {number} min
+ * @param {number} max
+ */
 Generator._getRandomNumber = function(min, max) {
-    if(!min) {
-        min = 1;
-    }
-
-    if(!max) {
-        max = 9
-    }
+    min = (min) ? min : 1;
+    max = (max) ? max : 9;
 
     return Math.floor(Math.random() * (max - min) + min);
 };
 
+/** Private function to select a random operator */
 Generator._getRandomOperator = function() {
     var operators = ['+', '-', '*', '/'];
     var min = 0;
@@ -22,21 +27,25 @@ Generator._getRandomOperator = function() {
     return operators[i];
 };
 
-Generator.createExpression = function(numOfNum) {
-    var plop = [];
+/**
+ * Public function used to create a string expression
+ * @param {number} numCount - The amount of numbers in the expression
+ */
+Generator.createExpression = function(numCount) {
+    var expressionComponent = [];
 
-    if(plop.length === 0) {
-        plop.push(this._getRandomNumber());
-        numOfNum--;
+    if(expressionComponent.length === 0) {
+        expressionComponent.push(this._getRandomNumber());
+        numCount--;
     }
 
-    while(numOfNum) {
-        plop.push(this._getRandomOperator());
-        plop.push(this._getRandomNumber());
-        numOfNum--;
+    while(numCount) {
+        expressionComponent.push(this._getRandomOperator());
+        expressionComponent.push(this._getRandomNumber());
+        numCount--;
     }
 
-    return plop.join('');
+    return expressionComponent.join('');
 };
 
 module.exports = Generator;
