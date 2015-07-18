@@ -4,7 +4,7 @@ This project is a node application that creates random math equations then solve
 
 ## Prerequisites
 - This project requires NodeJS and GIT.  
-  - [Node](https://nodejs.org) uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.   
+  - [Node](https://nodejs.org) uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.  You may need to install node. 
   - [Git](https://git-scm.com) is a free and open source distributed version control system.  Git should natively be installed on your mac.
 - All other dependencies are installed via [NPM](https://www.npmjs.com/) during the Getting Started instructions
 
@@ -12,7 +12,7 @@ This project is a node application that creates random math equations then solve
 ## Getting Started
 1. Open up your bash terminal
 1. Clone the git repository to your local computer ```git clone https://github.com/jordanpapaleo/generator-evaluator.git```
-1. Navigate into the root of the project ```cd generator-evaluator``
+1. Navigate into the root of the project ```cd generator-evaluator```
 1. Install the dependencies and build the project ```npm install```
 
 
