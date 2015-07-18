@@ -1,19 +1,19 @@
 'use strict';
 
-const Evaluator = {};
+var Evaluator = {};
 
 Evaluator.solve = function(equation) {
-    let processedValues = this._processEquation(equation);
+    var processedValues = this._processEquation(equation);
     return this._solveEquation(processedValues);
 };
 
 Evaluator._processEquation = function(equation) {
-    let processedValues = [];
-    let components = equation.split('');
-    let tempVal = '';
+    var processedValues = [];
+    var components = equation.split('');
+    var tempVal = '';
 
-    for(let i = 0, j = components.length; i < j; i++) {
-        let component = components[i];
+    for(var i = 0, j = components.length; i < j; i++) {
+        var component = components[i];
 
         if(!isNaN(component)) {
             tempVal += `${component}`;
@@ -33,9 +33,9 @@ Evaluator._processEquation = function(equation) {
 };
 
 Evaluator._solveEquation = function(processedValues) {
-    let value = null;
+    var value = null;
 
-    for(let i = 0, j = processedValues.length; i < j; i++) {
+    for(var i = 0, j = processedValues.length; i < j; i++) {
         if(!value) {
             value = processedValues[i];
         } else {
@@ -48,7 +48,7 @@ Evaluator._solveEquation = function(processedValues) {
 };
 
 Evaluator._solve = function(val1, op, val2) {
-    let value = 0;
+    var value = 0;
     val1 = parseFloat(val1);
     val2 = parseFloat(val2);
 
@@ -75,4 +75,4 @@ Evaluator._solve = function(val1, op, val2) {
     return value;
 };
 
-export default Evaluator;
+module.exports = Evaluator;

@@ -3,6 +3,7 @@
 import Evaluator      from './Evaluator';
 import Generator      from './Generator';
 
+/*
 let i = 25;
 
 while(i) {
@@ -15,3 +16,4 @@ while(i) {
     console.log('---------');
     i--;
 }
+*/
