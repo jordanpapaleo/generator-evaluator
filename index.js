@@ -18,6 +18,8 @@ nodemon.on('start', function() {
             generateEquation(i);
             i--;
         }
+
+        //process.exit(1);
     }, 250);
 });
 
