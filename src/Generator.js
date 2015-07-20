@@ -21,9 +21,7 @@ Generator._getRandomNumber = function(min, max) {
 /** Private function to select a random operator */
 Generator._getRandomOperator = function() {
     var operators = ['+', '-', '*', '/'];
-    var min = 0;
-    var max = operators.length;
-    var i = this._getRandomNumber(min, max);
+    var i = Math.floor(Math.random() * operators.length);
     return operators[i];
 };
 

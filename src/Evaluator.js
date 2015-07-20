@@ -88,7 +88,7 @@ Evaluator._evaluate = function(val1, op, val2) {
             break;
     }
 
-    return value;
+    return Math.round(value * 100) / 100;
 };
 
 module.exports = Evaluator;
