@@ -1,11 +1,15 @@
-var Generator  = require('./Generator');
-var Evaluator  = require('./Evaluator');
+'use strict';
 
 var http       = require('http');
 var connect    = require('connect');
 var bodyParser = require('body-parser');
 var send       = require('connect-send-json');
 
+//App Components
+var Generator  = require('./Generator');
+var Evaluator  = require('./Evaluator');
+
+//
 var app  = connect();
 var port = 1337;
 
@@ -42,7 +46,7 @@ app.use('/v1/generator/', function(req, res) {
             break;
         case 'GET':
             res.json({
-                expression: Generator.createExpression(Math.ceil(Math.random() * 50))
+                expression: Generator.init()
             });
             break;
         case 'PUT':
@@ -58,4 +62,8 @@ app.use('/', function(req, res) {
     res.end('Generator Evaluator API');
 });
 
+module.exports = app;
+
 http.createServer(app).listen(port);
+
+

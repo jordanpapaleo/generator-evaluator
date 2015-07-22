@@ -7,7 +7,29 @@
 var Generator = {};
 
 /**
- * Private function to create random numbers
+ * Public function used to create a random string expression
+ */
+Generator.init = function(numCount) {
+    //A random number of components in the equation string
+    numCount = (numCount) ? numCount : Math.ceil(Math.random() * 50);
+    var expressionComponent = [];
+
+    if(expressionComponent.length === 0) {
+        expressionComponent.push(this._getRandomNumber());
+        numCount--;
+    }
+
+    while(numCount) {
+        expressionComponent.push(this._getRandomOperator());
+        expressionComponent.push(this._getRandomNumber());
+        numCount--;
+    }
+
+    return expressionComponent.join('');
+};
+
+/**
+ * Private helper function to create random numbers
  * @param {number} min
  * @param {number} max
  */
@@ -23,27 +45,6 @@ Generator._getRandomOperator = function() {
     var operators = ['+', '-', '*', '/'];
     var i = Math.floor(Math.random() * operators.length);
     return operators[i];
-};
-
-/**
- * Public function used to create a string expression
- * @param {number} numCount - The amount of numbers in the expression
- */
-Generator.createExpression = function(numCount) {
-    var expressionComponent = [];
-
-    if(expressionComponent.length === 0) {
-        expressionComponent.push(this._getRandomNumber());
-        numCount--;
-    }
-
-    while(numCount) {
-        expressionComponent.push(this._getRandomOperator());
-        expressionComponent.push(this._getRandomNumber());
-        numCount--;
-    }
-
-    return expressionComponent.join('');
 };
 
 module.exports = Generator;

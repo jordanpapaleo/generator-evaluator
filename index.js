@@ -6,7 +6,6 @@ var args    = require('minimist')(process.argv.slice(2), {
     number: 'i'
 });
 
-
 nodemon({
     script: './src/api.js'
 });
@@ -14,16 +13,18 @@ nodemon({
 nodemon.on('start', function() {
     setTimeout(function() {
         var i = (args.i) ? args.i : 10;
-        while(i) {
-            generateEquation(i);
+
+        while (i) {
+            generateEquation('A:' + i, i);
+            generateEquation('B:' + i, i);
             i--;
         }
-
-        //process.exit(1);
     }, 250);
 });
 
-function generateEquation(i) {
+function generateEquation(id, i) {
+    console.log('id',id);
+
     var options = {
         hostname: '127.0.0.1',
         port: 1337,
@@ -34,18 +35,17 @@ function generateEquation(i) {
     var req = http.request(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            evaluateEquation(i, chunk);
+            evaluateEquation(id, chunk);
         });
     });
 
     req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
+        console.log('Generator API error: ' + e.message);
     });
-
     req.end();
 }
 
-function evaluateEquation(i, data) {
+function evaluateEquation(id, data) {
     data = JSON.parse(data);
 
     if(!data.hasOwnProperty('expression')) {
@@ -67,14 +67,15 @@ function evaluateEquation(i, data) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             console.log('');
-            console.log('Solving equation ' + i);
+            console.log(id);
+            console.log('--------');
             console.log('Equation:', data.expression);
             console.log('Value:',chunk);
         });
     });
 
     req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
+        console.log('Evaluator API error: ' + e.message);
     });
 
     req.write(data.expression);

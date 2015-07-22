@@ -7,18 +7,22 @@
 var Evaluator = {};
 
 /**
- *
+ * Public function use as entry point to solve a string equation
+ * @param {string} equation - this is a string of numbers and operators
  */
 Evaluator.solve = function(equation) {
-    var processedValues = this._processEquationString(equation);
-    return this._solveEquation(processedValues);
+    var parsedValues = this._parseEquationString(equation);
+    var solution = this._equationController(parsedValues);
+
+    return solution;
 };
 
 /**
- *
+ * Private function to break an equation string into an array of component strings
+ * @param {string} equation - this is a string of numbers and operators
  */
-Evaluator._processEquationString = function(equation) {
-    var processedValues = [];
+Evaluator._parseEquationString = function(equation) {
+    var parsedValues = [];
     var components = equation.split('');
     var tempVal = '';
 
@@ -28,31 +32,32 @@ Evaluator._processEquationString = function(equation) {
         if(!isNaN(component)) {
             tempVal += component + '';
         } else {
-            processedValues.push(tempVal);
-            processedValues.push(component);
+            parsedValues.push(tempVal);
+            parsedValues.push(component);
             tempVal = '';
         }
 
         //Push last value
         if(i === components.length - 1) {
-            processedValues.push(tempVal);
+            parsedValues.push(tempVal);
         }
     }
 
-    return processedValues;
+    return parsedValues;
 };
 
 /**
- *
+ * Private function to control the iterative solving of the equation
+ * @param {array} parsedValues - this is the controller
  */
-Evaluator._solveEquation = function(processedValues) {
+Evaluator._equationController = function(parsedValues) {
     var value = null;
 
-    for(var i = 0, j = processedValues.length; i < j; i++) {
+    for(var i = 0, j = parsedValues.length; i < j; i++) {
         if(!value) {
-            value = processedValues[i];
+            value = parsedValues[i];
         } else {
-            value = this._evaluate(value, processedValues[i], processedValues[i + 1]);
+            value = this._evaluate(value, parsedValues[i], parsedValues[i + 1]);
             i++; //skip an iteration since we just used it
         }
     }
@@ -61,10 +66,13 @@ Evaluator._solveEquation = function(processedValues) {
 };
 
 /**
- *
+ * Private function to evaluate an equation
+ * @param {string} val1 - first value in the equation
+ * @param {string} op - operator for the equation
+ * @param {string} val2 - second value in the equation
  */
 Evaluator._evaluate = function(val1, op, val2) {
-    var value = 0;
+    var solution = 0;
     val1 = parseFloat(val1);
     val2 = parseFloat(val2);
 
@@ -75,20 +83,20 @@ Evaluator._evaluate = function(val1, op, val2) {
 
     switch(op) {
         case '+':
-            value = val1 + val2;
+            solution = val1 + val2;
             break;
         case '-':
-            value = val1 - val2;
+            solution = val1 - val2;
             break;
         case '*':
-            value = val1 * val2;
+            solution = val1 * val2;
             break;
         case '/':
-            value = val1 / val2;
+            solution = val1 / val2;
             break;
     }
 
-    return Math.round(value * 100) / 100;
+    return Math.round(solution * 100) / 100;
 };
 
 module.exports = Evaluator;
