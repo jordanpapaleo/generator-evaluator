@@ -15,16 +15,14 @@ nodemon.on('start', function() {
         var i = (args.i) ? args.i : 10;
 
         while (i) {
-            generateEquation('A:' + i, i);
-            generateEquation('B:' + i, i);
+            generateEquation();
+            generateEquation();
             i--;
         }
     }, 250);
 });
 
-function generateEquation(id, i) {
-    console.log('id',id);
-
+function generateEquation() {
     var options = {
         hostname: '127.0.0.1',
         port: 1337,
@@ -35,7 +33,7 @@ function generateEquation(id, i) {
     var req = http.request(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            evaluateEquation(id, chunk);
+            evaluateEquation(chunk);
         });
     });
 
@@ -45,7 +43,7 @@ function generateEquation(id, i) {
     req.end();
 }
 
-function evaluateEquation(id, data) {
+function evaluateEquation(data) {
     data = JSON.parse(data);
 
     if(!data.hasOwnProperty('expression')) {
@@ -66,11 +64,8 @@ function evaluateEquation(id, data) {
     var req = http.request(options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
+            console.log('Done');
             console.log('');
-            console.log(id);
-            console.log('--------');
-            console.log('Equation:', data.expression);
-            console.log('Value:',chunk);
         });
     });
 
@@ -78,6 +73,12 @@ function evaluateEquation(id, data) {
         console.log('Evaluator API error: ' + e.message);
     });
 
-    req.write(data.expression);
+    var encodedString = encodeString(data.expression);
+
+    req.write(encodedString);
     req.end();
+}
+
+function encodeString(string) {
+    return string.replace(/\+/g, '%2B');
 }

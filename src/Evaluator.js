@@ -11,10 +11,23 @@ var Evaluator = {};
  * @param {string} equation - this is a string of numbers and operators
  */
 Evaluator.solve = function(equation) {
+    if(!equation) {
+        throw 'No equation to solve';
+    }
+
+    equation = this._decodeString(equation);
     var parsedValues = this._parseEquationString(equation);
-    var solution = this._equationController(parsedValues);
+    var solution = this._evaluateEquations(parsedValues);
+
+    console.log('Evaluator received:', equation);
+    console.log('Evaluator solution:', solution);
+
 
     return solution;
+};
+
+Evaluator._decodeString = function(string) {
+    return string.replace(/%2B/g, '+');
 };
 
 /**
@@ -47,10 +60,10 @@ Evaluator._parseEquationString = function(equation) {
 };
 
 /**
- * Private function to control the iterative solving of the equation
+ * Private function to control the iterative solving of each equation
  * @param {array} parsedValues - this is the controller
  */
-Evaluator._equationController = function(parsedValues) {
+Evaluator._evaluateEquations = function(parsedValues) {
     var value = null;
 
     for(var i = 0, j = parsedValues.length; i < j; i++) {
