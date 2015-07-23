@@ -13,7 +13,7 @@ This project is a node application that creates random math equations then solve
 
 
 ## Getting Started
-1. Open up your bash terminal
+1. Open up your bash terminal and use the commands in teh following steps.
 1. Clone the git repository to your local computer<br> ```git clone https://github.com/jordanpapaleo/generator-evaluator.git```
 1. Navigate into the root of the project<br> ```cd generator-evaluator```
 1. Install the dependencies and build the project<br> ```npm install```
