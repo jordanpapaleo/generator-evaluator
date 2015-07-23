@@ -13,9 +13,12 @@ This project is a node application that creates random math equations then solve
 
 
 ## Getting Started
-1. Open up your bash terminal
-1. Clone the git repository to your local computer ```git clone https://github.com/jordanpapaleo/generator-evaluator.git```
-1. Navigate into the root of the project ```cd generator-evaluator```
-1. Install the dependencies and build the project ```npm install```
-1. Run from you terminal ```./index.js```
-1. There is an optinal flag you can use to increase the number of equations to solve ```./index.js --i=50```
+1. Open up your bash terminal and use the commands in teh following steps.
+1. Clone the git repository to your local computer<br> ```git clone https://github.com/jordanpapaleo/generator-evaluator.git```
+1. Navigate into the root of the project<br> ```cd generator-evaluator```
+1. Install the dependencies and build the project<br> ```npm install```
+1. Run from you terminal<br> ```./index.js```
+1. There is an optinal flag you can use to increase the number of equations to solve<br> ```./index.js --i=50```
+
+## Tests
+- Run the test in your terminal<br>```npm test```
