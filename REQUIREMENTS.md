@@ -21,5 +21,4 @@ The end product should:
 - Delivery
 
 ##Upon completion of the project, please provide
-A GitHub link the source code, along with any instructions to run the services locally Compensation<br>
-As a courtesy we're offering a $300 flat-fee compensation payable upon submission of code. Please also provide your PayPal ID along with code sample for immediate processing.
+A GitHub link the source code, along with any instructions to run the services locally.

@@ -18,4 +18,4 @@ This project is a node application that creates random math equations then solve
 1. Navigate into the root of the project ```cd generator-evaluator```
 1. Install the dependencies and build the project ```npm install```
 1. Run from you terminal ```./index.js```
-1. There is an optinal flag you can use to increase the number of equations to solve ```./index.js --i=100```
+1. There is an optinal flag you can use to increase the number of equations to solve ```./index.js --i=50```
