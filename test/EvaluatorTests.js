@@ -27,7 +27,7 @@ describe('Evaluator', function() {
 
     describe('_equationController', function() {
         it('should execute math equations from array data', function() {
-            var value = Evaluator._equationController(['1', '+', '2']);
+            var value = Evaluator._evaluateEquations(['1', '+', '2']);
             value.should.be.a('number');
             expect(value).to.equal(3);
         });

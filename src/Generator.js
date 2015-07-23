@@ -25,7 +25,11 @@ Generator.init = function(numCount) {
         numCount--;
     }
 
-    return expressionComponent.join('');
+    var equationString = expressionComponent.join('');
+
+    console.log('Generated equation: ', equationString);
+
+    return equationString;
 };
 
 /**
