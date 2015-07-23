@@ -19,3 +19,6 @@ This project is a node application that creates random math equations then solve
 1. Install the dependencies and build the project<br> ```npm install```
 1. Run from you terminal<br> ```./index.js```
 1. There is an optinal flag you can use to increase the number of equations to solve<br> ```./index.js --i=50```
+
+## Tests
+- Run the test in your terminal<br>```npm test```
