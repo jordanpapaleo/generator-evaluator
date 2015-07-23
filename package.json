@@ -6,9 +6,9 @@
   "scripts": {
     "lint-jscs": "jscs --esnext src/",
     "lint-eslint": "eslint src/",
-    "lint": "npm run lint-eslint -f && npm run lint-jscs -f",
+    "lint": "npm run lint-eslint -f && npm run lint-jscs",
     "unit-test": "mocha",
-    "test": "npm run lint -f && npm run unit-test -f",
+    "test": "npm run lint -f && npm run unit-test",
     "start-api": "nodemon ./src/api.js",
     "start-app": "node ./index.js"
   },

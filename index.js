@@ -56,8 +56,8 @@ function evaluateEquation(data) {
         path: '/v1/evaluator',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': data.expression.length
+            'Content-Type': 'application/x-www-form-urlencoded'
+            //'Content-Length': data.expression.length
         }
     };
 
