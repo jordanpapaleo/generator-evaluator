@@ -22,7 +22,6 @@ Evaluator.solve = function(equation) {
     console.log('Evaluator received:', equation);
     console.log('Evaluator solution:', solution);
 
-
     return solution;
 };
 
